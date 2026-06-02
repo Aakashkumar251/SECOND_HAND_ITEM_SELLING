@@ -1,0 +1,33 @@
+<!-- <div style="max-width: 400px; margin: 50px auto; padding: 20px;">
+  <h2>Create Account</h2>
+
+  <input [value]="user.name" (input)="user.name = $event.target.value" placeholder="Full Name" /><br><br>
+  <input [value]="user.email" (input)="user.email = $event.target.value" placeholder="Email" type="email" /><br><br>
+  <input [value]="user.password" (input)="user.password = $event.target.value" placeholder="Password" type="password" /><br><br>
+  <input [value]="user.phone" (input)="user.phone = $event.target.value" placeholder="Phone" /><br><br>
+
+  <button (click)="onRegister()">Register</button>
+
+  <p>{{ msg }}</p>
+
+  <p>Already have account? <a routerLink="/login">Login</a></p>
+</div> -->
+
+<!-- upper wala maula that -->
+
+
+
+<div style="max-width: 400px; margin: 50px auto; padding: 20px;">
+  <h2>Create Account</h2>
+
+  <input [(ngModel)]="user.name" placeholder="Full Name" /><br><br>
+  <input [(ngModel)]="user.email" placeholder="Email" type="email" /><br><br>
+  <input [(ngModel)]="user.password" placeholder="Password" type="password" /><br><br>
+  <input [(ngModel)]="user.phone" placeholder="Phone" /><br><br>
+
+  <button (click)="onRegister()">Register</button>
+
+  <p>{{ msg }}</p>
+
+  <p>Already have account? <a routerLink="/login">Login</a></p>
+</div>

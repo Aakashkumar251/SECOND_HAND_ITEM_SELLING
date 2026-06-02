@@ -1,0 +1,12 @@
+<div style="max-width: 400px; margin: 50px auto; padding: 20px;">
+  <h2>Login</h2>
+
+  <input [(ngModel)]="credentials.email" placeholder="Email" type="email" /><br><br>
+  <input [(ngModel)]="credentials.password" placeholder="Password" type="password" /><br><br>
+
+  <button (click)="onlogin()">Login</button>
+
+  <p>{{ msg }}</p>
+
+  <p>No account? <a routerLink="/register">Register</a></p>
+</div>
