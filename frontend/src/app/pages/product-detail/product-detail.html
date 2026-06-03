@@ -1,0 +1,21 @@
+<h1 style="color: red;">HELLO</h1>
+<pre>{{ product | json }}</pre>
+
+<div class="detail-page" *ngIf="product">
+  <h2>{{ product.title }}</h2>
+
+  <div *ngFor="let img of product.imageUrls">
+    <img [src]="img" class="product-image" />
+  </div>
+
+  <h3>₹ {{ product.price }}</h3>
+  <p>{{ product.description }}</p>
+  <p>📍 Location: {{ product.location }}</p>
+  <p>🏷️ Category: {{ product.category }}</p>
+  <p>📅 Posted: {{ product.createdAt | date }}</p>
+
+  <hr>
+  <h4>Seller Info</h4>
+  <p>👤 {{ product.sellerName }}</p>
+  <p>📧 {{ product.sellerEmail }}</p>
+</div>

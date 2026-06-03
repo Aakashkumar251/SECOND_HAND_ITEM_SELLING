@@ -30,6 +30,6 @@ public class User {
     private String role = "USER"; // USER or ADMIN
 
     private LocalDateTime createdAt = LocalDateTime.now();
-
+    private String profileImage =  "https://res.cloudinary.com/dey3hyep9/image/upload/v1780465119/seconddeal/dcnjlr6guc2fw00puxfc.png";
 
 }

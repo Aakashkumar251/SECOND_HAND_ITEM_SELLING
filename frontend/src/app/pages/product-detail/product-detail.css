@@ -1,0 +1,18 @@
+:host {
+  display: block;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  color: black;
+  background: white;
+}
+
+.detail-page {
+  color: black;
+  background: white;
+}
+
+.product-image {
+  width: 100%;
+  margin-bottom: 10px;
+}

@@ -11,6 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -32,10 +34,16 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = authHeader.substring(7); // remove "Bearer "
             try {
                 String email = jwtService.extractEmail(token);
-                if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {  //Spring Security has not already stored an authenticated user for this request.
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(email, null, List.of());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+
+//                    3) SecurityContextHolder.getContext().setAuthentication(authentication);
+//
+//                    This stores the authentication object inside Spring Security’s security context.
+//
+//                    After this, Spring treats the request as authenticated.
                 }
             } catch (Exception e) {
                 // invalid token - just skip

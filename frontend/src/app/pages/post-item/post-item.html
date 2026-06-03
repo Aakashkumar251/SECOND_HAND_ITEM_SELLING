@@ -1,0 +1,38 @@
+<div style="max-width: 500px; margin: 40px auto; padding: 20px;">
+  <h2>📦 Post an Item for Sale</h2>
+
+  <input [(ngModel)]="product.title" placeholder="Title" /><br><br>
+
+  <textarea [(ngModel)]="product.description"
+            placeholder="Describe your item..."
+            rows="4">
+  </textarea><br><br>
+
+  <input [(ngModel)]="product.price" placeholder="Price (₹)" type="number" /><br><br>
+
+  <input [(ngModel)]="product.location" placeholder="Location" /><br><br>
+
+  <select [(ngModel)]="product.category">
+    <option value="">-- Select Category --</option>
+    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+  </select><br><br>
+
+  <!-- Real file upload -->
+  <label for="imageUpload">Upload Images:</label><br>
+  <input id="imageUpload" type="file" multiple accept="image/*" (change)="onFileSelected($event)" /><br><br>
+
+  <!-- Show uploaded image previews -->
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+    <img *ngFor="let url of product.imageUrls"
+         [src]="url"
+         style="width:80px; height:80px; object-fit:cover; border-radius:4px;" />
+  </div><br>
+
+@if (uploading) {
+  <p>⏳ Uploading...</p>
+}
+
+  <button (click)="onSubmit()" [disabled]="uploading">🚀 Post Item</button>
+
+  <p>{{ message }}</p>
+</div>

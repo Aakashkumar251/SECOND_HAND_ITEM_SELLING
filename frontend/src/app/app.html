@@ -1,1 +1,30 @@
-<router-outlet></router-outlet>
+<router-outlet></router-outlet> 
+<!--  This line is an Angular directive that serves as a placeholder for the routed components.
+   When the user navigates to different routes defined in the routing configuration,
+    the corresponding components will be displayed in this location within the template. -->
+
+
+
+    <!-- But Angular adds special commands to HTML.
+     we call them directives
+    <p *ngIf="isLoggedIn">
+  Welcome
+</p> -->
+<!-- 
+
+User visits:
+localhost:4200/login
+
+Angular checks routes:
+
+{ path: 'login', component: LoginComponent }
+
+Match found ✅
+
+Angular automatically places:
+
+<app-login></app-login>
+
+inside:
+
+<router-outlet></router-outlet> -->

@@ -1,8 +1,6 @@
 package com.seconddeal.backend.service;
 
-import com.seconddeal.backend.dto.AuthResponse;
-import com.seconddeal.backend.dto.LoginUser;
-import com.seconddeal.backend.dto.RegisterUser;
+import com.seconddeal.backend.dto.*;
 import com.seconddeal.backend.model.User;
 import com.seconddeal.backend.repository.UserRepo;
 import com.seconddeal.backend.security.JwtService;
@@ -52,6 +50,39 @@ public class UserService {
         }
         String token = jwtservice.generateToken(user.getEmail());
         return new AuthResponse(token, user.getName(), user.getEmail(), user.getRole());
+    }
+
+
+
+    // Get my profile
+    public ProfileResponse getProfile(String email) {
+        User user = userRepo.findByEmail(email);
+        return toProfileResponse(user);
+    }
+
+    // Update my profile
+    public ProfileResponse updateProfile(String email, UpdateProfileRequest request) {
+        User user = userRepo.findByEmail(email);
+
+        if (request.getName() != null) user.setName(request.getName());
+        if (request.getPhone() != null) user.setPhone(request.getPhone());
+        if (request.getProfileImage() != null) user.setProfileImage(request.getProfileImage());
+
+        userRepo.save(user);
+        return toProfileResponse(user);
+    }
+
+    // Convert User to ProfileResponse
+    private ProfileResponse toProfileResponse(User user) {
+        ProfileResponse res = new ProfileResponse();
+        res.setId(user.getId());
+        res.setName(user.getName());
+        res.setEmail(user.getEmail());
+        res.setPhone(user.getPhone());
+        res.setRole(user.getRole());
+        res.setProfileImage(user.getProfileImage());
+        res.setCreatedAt(user.getCreatedAt());
+        return res;
     }
 
 

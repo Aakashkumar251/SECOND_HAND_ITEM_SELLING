@@ -1,0 +1,41 @@
+<div style="max-width: 500px; margin: 40px auto; padding: 20px;">
+  <h2>👤 My Profile</h2>
+@if (message) {
+  <p>{{ message }}</p>
+}
+
+@if (profile && !editMode) {
+  <div>
+    <img [src]="profile.profileImage"
+         style="width:100px; height:100px; border-radius:50%; object-fit:cover;" />
+
+    <p><strong>Name:</strong> {{ profile.name }}</p>
+    <p><strong>Email:</strong> {{ profile.email }}</p>
+    <p><strong>Phone:</strong> {{ profile.phone }}</p>
+    <p><strong>Member since:</strong> {{ profile.createdAt | date }}</p>
+
+    <button (click)="editMode = true">✏️ Edit Profile</button>
+  </div>
+}
+
+@if (editMode) {
+  <div>
+    <h3>Edit Profile</h3>
+
+    <input [(ngModel)]="updatedData.name" placeholder="Name" />
+    <input [(ngModel)]="updatedData.phone" placeholder="Phone" />
+
+    <label>Change Profile Picture:</label>
+    <input type="file"
+           accept="image/*"
+           (change)="onProfileImageSelected($event)" />
+
+    @if (updatedData.profileImage) {
+      <img [src]="updatedData.profileImage"
+           style="width:80px; height:80px; border-radius:50%; object-fit:cover;" />
+    }
+
+    <button (click)="saveProfile()">💾 Save</button>
+    <button (click)="editMode = false">Cancel</button>
+  </div>
+}
