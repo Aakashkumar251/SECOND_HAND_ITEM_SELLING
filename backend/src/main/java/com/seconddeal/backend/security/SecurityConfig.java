@@ -32,6 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/products/search").permitAll()
                         .requestMatchers("/api/products/{id}").permitAll()
                         .requestMatchers("/api/images/**").permitAll()
+                        .requestMatchers("/api/wishlist/**").authenticated()
                         .anyRequest().authenticated()  // baki ki request authenticat honi chiye we cannot permit all other requests
         )
          .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
