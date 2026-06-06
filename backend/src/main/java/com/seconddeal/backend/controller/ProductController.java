@@ -64,4 +64,15 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.ok("Deleted successfully");
     }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<ProductResponse>> filter(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) String location) {
+
+        return ResponseEntity.ok(
+                productService.filterProducts(category, minPrice, maxPrice, location));
+    }
 }

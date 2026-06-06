@@ -8,6 +8,10 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail';
 // import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProfileComponent } from './pages/profile/profile';
 import { MyListingsComponent } from './pages/my-listings/my-listings';
+import { WishlistComponent } from './pages/wishlist/wishlist';
+import { InboxComponent } from './pages/inbox/inbox';
+import { SellerProfileComponent } from './pages/seller-profile/seller-profile';
+import { AdminComponent } from './pages/admin/admin';
 
 export const routes: Routes = [ // This array defines the routing configuration for the Angular application. 
 // Each object in the array represents a route, which consists of a path and a component.
@@ -18,7 +22,13 @@ export const routes: Routes = [ // This array defines the routing configuration 
     { path: 'post-item', component: PostItemComponent }, // When the user navigates to '/post-item', the PostItemComponent will be displayed.
   { path: 'product/:id', component: ProductDetailComponent }, // When the user navigates to '/product/:id', where :id is a placeholder for the product ID, the ProductDetailComponent will be displayed.
     { path: 'profile', component: ProfileComponent },
-  { path: 'my-listings', component: MyListingsComponent }
+  { path: 'my-listings', component: MyListingsComponent },
+  { path: 'inbox', component: InboxComponent },
+{ path: 'wishlist', component: WishlistComponent },
+   { path: 'wishlist', component: WishlistComponent },
+   { path: 'seller/:id', component: SellerProfileComponent },
+   { path: 'admin', component: AdminComponent }
+
 
 
 

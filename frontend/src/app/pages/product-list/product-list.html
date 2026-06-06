@@ -1,40 +1,121 @@
-<div style="max-width: 900px; margin: 30px auto; padding: 20px;">
-
+<div style="max-width:1000px; margin:30px auto; padding:20px;">
   <h2>🛍️ Browse Items</h2>
 
   <!-- Search Bar -->
-  <div>
-    <input [(ngModel)]="this.keyword" placeholder="Search items..." />
-    <button (click)="onSearch()">Search</button>
-    <button (click)="loadProducts()">Clear</button>
-  </div><br>
-@if (message) {
-  <p>{{ message }}</p>
-}
+  <div style="margin-bottom:20px;">
+    <input [(ngModel)]="keyword"
+           placeholder="Search items..."
+           style="width:300px;" />
 
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    <button (click)="onSearch()">🔍 Search</button>
+    <button (click)="clearFilters()">Clear</button>
+  </div>
 
-  @for (product of products; track product.id) {
+  <div style="display:flex; gap:20px;">
 
-    <div style="border: 1px solid #ccc; padding: 15px; width: 250px; border-radius: 8px;">
+    <!-- Filter Sidebar -->
+    <div style="width:200px;
+                border:1px solid #ccc;
+                padding:15px;
+                border-radius:8px;
+                height:fit-content;">
 
-      @if (product.imageUrls?.length > 0) {
-        <img
-          [src]="product.imageUrls[0]"
-          style="width: 100%; height: 150px; object-fit: cover;" />
+      <h3>Filters</h3>
+
+      <label>Category</label><br>
+
+      <select [(ngModel)]="selectedCategory"
+              style="width:100%;">
+        <option value="">All</option>
+
+        @for (cat of categories; track cat) {
+          <option [value]="cat">
+            {{ cat }}
+          </option>
+        }
+      </select>
+
+      <br><br>
+
+      <label>Min Price (₹)</label><br>
+      <input [(ngModel)]="minPrice"
+             type="number"
+             placeholder="0"
+             style="width:100%;" />
+
+      <br><br>
+
+      <label>Max Price (₹)</label><br>
+      <input [(ngModel)]="maxPrice"
+             type="number"
+             placeholder="Any"
+             style="width:100%;" />
+
+      <br><br>
+
+      <label>Location</label><br>
+      <input [(ngModel)]="location"
+             placeholder="City..."
+             style="width:100%;" />
+
+      <br><br>
+
+      <button (click)="onFilter()" style="width:100%;">
+        Apply Filters
+      </button>
+
+      <button (click)="clearFilters()"
+              style="width:100%; margin-top:8px;">
+        Reset
+      </button>
+    </div>
+
+    <!-- Product Grid -->
+    <div style="flex:1;">
+
+      @if (message) {
+        <p>{{ message }}</p>
       }
 
-      <h3>{{ product.title }}</h3>
-      <p>₹ {{ product.price }}</p>
-      <p>📍 {{ product.location }}</p>
-      <p>🏷️ {{ product.category }}</p>
+      @if (products.length === 0) {
+        <p>No items found.</p>
+      }
 
-      <a [routerLink]="['/product', product.id]">
-        View Details
-      </a>
+      <div style="display:flex; flex-wrap:wrap; gap:15px;">
+
+        @for (product of products; track product.id) {
+
+          <div style="border:1px solid #ccc;
+                      padding:15px;
+                      width:200px;
+                      border-radius:8px;">
+
+            @if (product.imageUrls?.length > 0) {
+              <img [src]="product.imageUrls[0]"
+                   style="width:100%;
+                          height:130px;
+                          object-fit:cover;" />
+              <br>
+            }
+
+            <h3 style="font-size:15px;">
+              {{ product.title }}
+            </h3>
+
+            <p>₹ {{ product.price }}</p>
+            <p>📍 {{ product.location }}</p>
+            <p>🏷️ {{ product.category }}</p>
+
+            <a [routerLink]="['/product', product.id]">
+              View Details
+            </a>
+
+          </div>
+        }
+
+      </div>
 
     </div>
 
-  }
-
+  </div>
 </div>

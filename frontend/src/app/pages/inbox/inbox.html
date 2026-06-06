@@ -1,0 +1,42 @@
+<div style="max-width:700px; margin:40px auto; padding:20px;">
+  <h2>📬 Inbox</h2>
+
+  @if (message) {
+    <p>{{ message }}</p>
+  }
+
+  @if (messages.length === 0) {
+    <p>No messages yet.</p>
+  }
+
+  @for (msg of messages; track msg.id) {
+    <div
+      style="border:1px solid #ccc;
+             padding:15px;
+             margin-bottom:10px;
+             border-radius:8px;">
+
+      <p>
+        <strong>From:</strong>
+        {{ msg.senderName }}
+      </p>
+
+      <p>
+        <strong>To:</strong>
+        {{ msg.receiverName }}
+      </p>
+
+      <p>
+        <strong>About product ID:</strong>
+        {{ msg.productId }}
+      </p>
+
+      <p>{{ msg.content }}</p>
+
+      <p style="color:gray; font-size:12px;">
+        {{ msg.sentAt | date:'medium' }}
+      </p>
+
+    </div>
+  }
+</div>

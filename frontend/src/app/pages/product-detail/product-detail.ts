@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product';
-
+import { WishlistService } from '../../services/wishlist';
+import { ChatService } from '../../services/chat';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
@@ -14,9 +15,14 @@ export class ProductDetailComponent implements OnInit {
 
   product: any = null;
   message = '';
+  wishlistMessage = '';
+   chatMessage = '';
+  showChat = false;
 
   constructor(
     private productService: ProductService,
+     private wishlistService: WishlistService,
+         private chatService: ChatService,
     private route: ActivatedRoute  // reads the id from URL
   ) {}
 
@@ -57,4 +63,30 @@ ngOnInit() {
       this.message = 'No product ID found in URL.';
     }
   });
-}}
+}
+
+
+toggleWishlist() {
+    this.wishlistService.toggleWishlist(this.product.id).subscribe({
+      next: (msg: any) => this.wishlistMessage = msg,
+      error: () => this.wishlistMessage = 'Please login first.'
+    });
+  }
+
+  sendMessage() {
+    this.chatService.sendMessage({
+      receiverId: this.product.sellerId,
+      productId: this.product.id,
+      content: this.chatMessage
+    }).subscribe({
+      next: () => {
+        this.chatMessage = '';
+        this.message = 'Message sent to seller ✅';
+        this.showChat = false;
+      },
+      error: () => this.message = 'Please login to contact seller.'
+    });
+  }
+
+
+}

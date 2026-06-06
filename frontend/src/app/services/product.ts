@@ -76,4 +76,10 @@ export class ProductService {
       headers: this.getHeaders()
     });
   }
+  filterProducts(category: string, minPrice: number,
+               maxPrice: number, location: string) {
+  return this.http.get<any[]>(
+    `${this.apiUrl}/filter?category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}&location=${location}`
+  );
+}
 }

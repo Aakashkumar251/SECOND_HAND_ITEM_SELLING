@@ -1,21 +1,74 @@
-<h1 style="color: red;">HELLO</h1>
-<pre>{{ product | json }}</pre>
+<div style="max-width:600px; margin:40px auto; padding:20px;">
 
-<div class="detail-page" *ngIf="product">
-  <h2>{{ product.title }}</h2>
+  @if (product) {
 
-  <div *ngFor="let img of product.imageUrls">
-    <img [src]="img" class="product-image" />
-  </div>
+    <h2>{{ product.title }}</h2>
 
-  <h3>₹ {{ product.price }}</h3>
-  <p>{{ product.description }}</p>
-  <p>📍 Location: {{ product.location }}</p>
-  <p>🏷️ Category: {{ product.category }}</p>
-  <p>📅 Posted: {{ product.createdAt | date }}</p>
+    @for (img of product.imageUrls; track img) {
+      <img
+        [src]="img"
+        style="width:100%; margin-bottom:10px; border-radius:8px;"
+      />
+    }
 
-  <hr>
-  <h4>Seller Info</h4>
-  <p>👤 {{ product.sellerName }}</p>
-  <p>📧 {{ product.sellerEmail }}</p>
+    <h3>₹ {{ product.price }}</h3>
+
+    <p>{{ product.description }}</p>
+    <p>📍 {{ product.location }}</p>
+    <p>🏷️ {{ product.category }}</p>
+    <p>📅 {{ product.createdAt | date }}</p>
+
+    <hr>
+
+    <h4>Seller Info</h4>
+    <p>👤 {{ product.sellerName }}</p>
+    <p>📧 {{ product.sellerEmail }}</p>
+    <a href="/seller/{{ product.sellerId }}">View Seller Reviews</a>
+
+    <div style="display:flex; gap:10px; margin-top:15px;">
+      <button (click)="toggleWishlist()">
+        ❤️ Wishlist
+      </button>
+
+      <button (click)="showChat = !showChat">
+        💬 Contact Seller
+      </button>
+    </div>
+
+    @if (wishlistMessage) {
+      <p>{{ wishlistMessage }}</p>
+    }
+
+    <!-- Chat Box -->
+    @if (showChat) {
+      <div
+        style="margin-top:15px;
+               border:1px solid #ccc;
+               padding:15px;
+               border-radius:8px;">
+
+        <h4>Send a message to seller</h4>
+
+        <textarea
+          [(ngModel)]="chatMessage"
+          placeholder="Hi, is this still available?"
+          rows="3"
+          style="width:100%;">
+        </textarea>
+
+        <br><br>
+
+        <button (click)="sendMessage()">
+          Send Message
+        </button>
+
+      </div>
+    }
+
+    @if (message) {
+      <p>{{ message }}</p>
+    }
+
+  }
+
 </div>

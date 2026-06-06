@@ -100,4 +100,19 @@ public class ProductService {
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
+
+    public List<ProductResponse> filterProducts(
+            String category, Double minPrice,
+            Double maxPrice, String location) {
+
+        Category cat = null;
+        if (category != null && !category.isEmpty()) {
+            cat = Category.valueOf(category);
+        }
+
+        return productRepository.filterProducts(cat, minPrice, maxPrice, location)
+                .stream()
+                .map(this::toResponse)
+                .collect(Collectors.toList());
+    }
 }

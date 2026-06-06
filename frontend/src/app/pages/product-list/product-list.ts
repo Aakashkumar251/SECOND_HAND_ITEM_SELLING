@@ -18,7 +18,13 @@ export class ProductListComponent implements OnInit {
   // and when the user clicks the search button, this keyword will be sent to the backend to search for products that match the keyword.
   message = '';// This property is used to display messages to the user, 
   // such as error messages when loading products fails or when a search fails.
+               selectedCategory = '';
+  minPrice: any = '';
+  maxPrice: any = '';
+  location = '';
 
+  categories = ['','ELECTRONICS','FURNITURE','CLOTHING',
+                 'VEHICLES','BOOKS','SPORTS','OTHER'];
   constructor(private productService: ProductService) {}
 
   ngOnInit() {      // This method is called when the component is initialized. It is a good place to load data from the backend, in this case, we want to load the list of products when the page opens.
@@ -64,4 +70,28 @@ export class ProductListComponent implements OnInit {
       error: () => this.message = 'Search failed.'
     });
   }
+
+
+    onFilter() {
+    this.productService.filterProducts(
+      this.selectedCategory,
+      this.minPrice || 0,
+      this.maxPrice || 9999999,
+      this.location
+    ).subscribe({
+      next: (data) => this.products = data,
+      error: () => this.message = 'Filter failed.'
+    });
+  }
+
+   clearFilters() {
+    this.selectedCategory = '';
+    this.minPrice = '';
+    this.maxPrice = '';
+    this.location = '';
+    this.keyword = '';
+    this.loadProducts();
+  }
 }
+
+
