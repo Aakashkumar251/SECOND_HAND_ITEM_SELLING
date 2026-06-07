@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product';
 import { WishlistService } from '../../services/wishlist';
 import { ChatService } from '../../services/chat';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.css'
 })

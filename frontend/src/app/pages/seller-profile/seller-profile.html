@@ -1,29 +1,27 @@
-<div style="max-width:600px; margin:40px auto; padding:20px;">
+<div class="reviews-container">
 
   <h2>⭐ Seller Reviews</h2>
 
-  <h3>
+  <h3 class="avg-rating">
     Average Rating:
     {{ avgRating | number:'1.1-1' }} / 5
   </h3>
 
   @for (review of reviews; track review.id) {
 
-    <div
-      style="border:1px solid #ccc;
-             padding:15px;
-             margin-bottom:10px;
-             border-radius:8px;">
+    <div class="review-card">
 
       <p>
         <strong>{{ review.reviewerName }}</strong>
       </p>
 
-      <p>{{ stars(review.rating) }}</p>
+      <p class="stars">
+        {{ stars(review.rating) }}
+      </p>
 
       <p>{{ review.comment }}</p>
 
-      <p style="color:gray; font-size:12px;">
+      <p class="review-date">
         {{ review.createdAt | date }}
       </p>
 
@@ -36,7 +34,6 @@
   <h3>Leave a Review</h3>
 
   <label>Rating (1-5):</label>
-  <br>
 
   <input
     [(ngModel)]="newReview.rating"
@@ -44,23 +41,22 @@
     min="1"
     max="5" />
 
-  <br><br>
-
   <textarea
     [(ngModel)]="newReview.comment"
     placeholder="Write your experience..."
-    rows="3"
-    style="width:100%;">
+    rows="3">
   </textarea>
 
-  <br><br>
-
-  <button (click)="submitReview()">
+  <button
+    class="submit-btn"
+    (click)="submitReview()">
     Submit Review
   </button>
 
   @if (message) {
-    <p>{{ message }}</p>
+    <p class="message">
+      {{ message }}
+    </p>
   }
 
 </div>

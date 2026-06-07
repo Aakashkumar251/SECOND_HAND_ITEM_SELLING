@@ -8,7 +8,8 @@ import { ProductService } from '../../services/product';
   selector: 'app-product-list',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
-  templateUrl: './product-list.html'
+  templateUrl: './product-list.html',
+  styleUrl: './product-list.css'
 })
 export class ProductListComponent implements OnInit {
 

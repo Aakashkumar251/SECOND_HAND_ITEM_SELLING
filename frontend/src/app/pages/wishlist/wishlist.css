@@ -1,0 +1,101 @@
+.wishlist-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.wishlist-container h2 {
+  margin-bottom: 20px;
+}
+
+.message {
+  margin-bottom: 15px;
+  color: #27ae60;
+  font-weight: 500;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  border: 1px dashed #ccc;
+  border-radius: 12px;
+  color: #666;
+}
+
+.wishlist-card {
+  display: flex;
+  gap: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  background: white;
+  transition: 0.3s;
+}
+
+.wishlist-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.wishlist-image {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.wishlist-info {
+  flex: 1;
+}
+
+.wishlist-info h3 {
+  margin-bottom: 8px;
+}
+
+.price-location {
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.view-btn {
+  text-decoration: none;
+  background: #0984e3;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+.view-btn:hover {
+  background: #0873c4;
+}
+
+.remove-btn {
+  border: none;
+  background: #ffeaea;
+  color: #d63031;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #d63031;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .wishlist-card {
+    flex-direction: column;
+  }
+
+  .wishlist-image {
+    width: 100%;
+    height: 220px;
+  }
+}

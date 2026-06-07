@@ -6,7 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   selector: 'app-admin',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './admin.html'
+  templateUrl: './admin.html',
+  styleUrl: './admin.css'
 })
 export class AdminComponent implements OnInit {
 

@@ -1,42 +1,51 @@
-<div style="max-width:700px; margin:40px auto; padding:20px;">
-  <h2>📬 Inbox</h2>
+<div class="inbox-container">
+
+  <div class="inbox-header">
+    <h2>📬 Inbox</h2>
+    <p>Your conversations and inquiries</p>
+  </div>
 
   @if (message) {
-    <p>{{ message }}</p>
+    <div class="info-message">
+      {{ message }}
+    </div>
   }
 
   @if (messages.length === 0) {
-    <p>No messages yet.</p>
+    <div class="empty-state">
+      <h3>No messages yet</h3>
+      <p>Messages from buyers and sellers will appear here.</p>
+    </div>
   }
 
   @for (msg of messages; track msg.id) {
-    <div
-      style="border:1px solid #ccc;
-             padding:15px;
-             margin-bottom:10px;
-             border-radius:8px;">
 
-      <p>
-        <strong>From:</strong>
-        {{ msg.senderName }}
-      </p>
+    <div class="message-card">
 
-      <p>
-        <strong>To:</strong>
-        {{ msg.receiverName }}
-      </p>
+      <div class="message-top">
+        <div>
+          <strong>From:</strong> {{ msg.senderName }}
+        </div>
 
-      <p>
-        <strong>About product ID:</strong>
-        {{ msg.productId }}
-      </p>
+        <div>
+          <strong>To:</strong> {{ msg.receiverName }}
+        </div>
+      </div>
 
-      <p>{{ msg.content }}</p>
+      <div class="product-tag">
+        Product ID: {{ msg.productId }}
+      </div>
 
-      <p style="color:gray; font-size:12px;">
+      <div class="message-content">
+        {{ msg.content }}
+      </div>
+
+      <div class="message-time">
         {{ msg.sentAt | date:'medium' }}
-      </p>
+      </div>
 
     </div>
+
   }
+
 </div>

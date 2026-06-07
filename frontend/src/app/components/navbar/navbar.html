@@ -1,30 +1,33 @@
-<nav style="background:#333; padding:12px 24px; display:flex;
-            justify-content:space-between; align-items:center;">
+<nav class="navbar">
 
-  <a routerLink="/" style="color:white; font-size:20px;
-     font-weight:bold; text-decoration:none;">
+  <a routerLink="/" class="logo">
     🛍️ SecondDeal
   </a>
 
-  <div style="display:flex; gap:16px; align-items:center;">
-    <a routerLink="/" style="color:white;">Browse</a>
+  <div class="nav-links">
 
-    <ng-container *ngIf="authService.isLoggedIn()">
-      <a routerLink="/post-item" style="color:white;">+ Sell</a>
-      <a routerLink="/my-listings" style="color:white;">My Listings</a>
-      <a routerLink="/profile" style="color:white;">Profile</a>
-      <button (click)="logout()"
-              style="color:white; background:transparent;
-                     border:1px solid white; padding:4px 10px;
-                     cursor:pointer;">
+    <a routerLink="/">Browse</a>
+
+    @if (authService.isLoggedIn()) {
+
+      <a routerLink="/post-item">+ Sell</a>
+      <a routerLink="/my-listings">My Listings</a>
+      <a routerLink="/wishlist">❤️ Wishlist</a>
+      <a routerLink="/inbox">📬 Inbox</a>
+      <a routerLink="/profile">Profile</a>
+      <a routerLink="/admin">Admin</a>
+
+      <button class="logout-btn" (click)="logout()">
         Logout
       </button>
-    </ng-container>
 
-    <ng-container *ngIf="!authService.isLoggedIn()">
-      <a routerLink="/login" style="color:white;">Login</a>
-      <a routerLink="/register" style="color:white;">Register</a>
-    </ng-container>
-    <a routerLink="/wishlist" style="color:white;">❤️ Wishlist</a>
+    } @else {
+
+      <a routerLink="/login">Login</a>
+      <a routerLink="/register">Register</a>
+
+    }
+
   </div>
+
 </nav>

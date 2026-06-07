@@ -1,18 +1,85 @@
-:host {
-  display: block;
-  max-width: 600px;
+.product-detail-container {
+  max-width: 700px;
   margin: 40px auto;
   padding: 20px;
-  color: black;
-  background: white;
-}
-
-.detail-page {
-  color: black;
-  background: white;
 }
 
 .product-image {
   width: 100%;
   margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.seller-link {
+  color: #0984e3;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.seller-link:hover {
+  text-decoration: underline;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.action-buttons button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #0984e3;
+  color: white;
+  cursor: pointer;
+}
+
+.action-buttons button:hover {
+  background: #0873c4;
+}
+
+.chat-box {
+  margin-top: 15px;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.chat-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.chat-box button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #27ae60;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-box button:hover {
+  background: #219150;
+}
+
+.wishlist-message,
+.message {
+  margin-top: 10px;
+  color: #2d3436;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .action-buttons button {
+    width: 100%;
+  }
 }

@@ -1,4 +1,4 @@
-<div style="max-width:600px; margin:40px auto; padding:20px;">
+<div class="product-detail-container">
 
   @if (product) {
 
@@ -7,7 +7,7 @@
     @for (img of product.imageUrls; track img) {
       <img
         [src]="img"
-        style="width:100%; margin-bottom:10px; border-radius:8px;"
+        class="product-image"
       />
     }
 
@@ -23,9 +23,15 @@
     <h4>Seller Info</h4>
     <p>👤 {{ product.sellerName }}</p>
     <p>📧 {{ product.sellerEmail }}</p>
-    <a href="/seller/{{ product.sellerId }}">View Seller Reviews</a>
 
-    <div style="display:flex; gap:10px; margin-top:15px;">
+    <a
+      class="seller-link"
+      href="/seller/{{ product.sellerId }}">
+      View Seller Reviews
+    </a>
+
+    <div class="action-buttons">
+
       <button (click)="toggleWishlist()">
         ❤️ Wishlist
       </button>
@@ -33,40 +39,39 @@
       <button (click)="showChat = !showChat">
         💬 Contact Seller
       </button>
+
     </div>
 
     @if (wishlistMessage) {
-      <p>{{ wishlistMessage }}</p>
+      <p class="wishlist-message">
+        {{ wishlistMessage }}
+      </p>
     }
 
-    <!-- Chat Box -->
     @if (showChat) {
-      <div
-        style="margin-top:15px;
-               border:1px solid #ccc;
-               padding:15px;
-               border-radius:8px;">
+
+      <div class="chat-box">
 
         <h4>Send a message to seller</h4>
 
         <textarea
           [(ngModel)]="chatMessage"
           placeholder="Hi, is this still available?"
-          rows="3"
-          style="width:100%;">
+          rows="3">
         </textarea>
-
-        <br><br>
 
         <button (click)="sendMessage()">
           Send Message
         </button>
 
       </div>
+
     }
 
     @if (message) {
-      <p>{{ message }}</p>
+      <p class="message">
+        {{ message }}
+      </p>
     }
 
   }

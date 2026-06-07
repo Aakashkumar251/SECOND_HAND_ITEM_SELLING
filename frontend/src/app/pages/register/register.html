@@ -15,19 +15,31 @@
 
 <!-- upper wala maula that -->
 
-
-
-<div style="max-width: 400px; margin: 50px auto; padding: 20px;">
+<div class="register-container">
   <h2>Create Account</h2>
 
-  <input [(ngModel)]="user.name" placeholder="Full Name" /><br><br>
-  <input [(ngModel)]="user.email" placeholder="Email" type="email" /><br><br>
-  <input [(ngModel)]="user.password" placeholder="Password" type="password" /><br><br>
-  <input [(ngModel)]="user.phone" placeholder="Phone" /><br><br>
+  <input [(ngModel)]="user.name" placeholder="Full Name" />
 
-  <button (click)="onRegister()">Register</button>
+  <input [(ngModel)]="user.email"
+         placeholder="Email"
+         type="email" />
 
-  <p>{{ msg }}</p>
+  <input [(ngModel)]="user.password"
+         placeholder="Password"
+         type="password" />
 
-  <p>Already have account? <a routerLink="/login">Login</a></p>
+  <input [(ngModel)]="user.phone"
+         placeholder="Phone" />
+
+  <button class="register-btn"
+          (click)="onRegister()">
+    Register
+  </button>
+
+  <p class="message">{{ msg }}</p>
+
+  <p class="login-link">
+    Already have account?
+    <a routerLink="/login">Login</a>
+  </p>
 </div>

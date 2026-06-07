@@ -1,0 +1,176 @@
+* {
+  box-sizing: border-box;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* Header */
+
+.header {
+  margin-bottom: 30px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 2rem;
+  color: #2d3436;
+}
+
+.header p {
+  color: #636e72;
+  margin-top: 8px;
+}
+
+/* Tabs */
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: white;
+  border: 1px solid #dfe6e9;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.tabs button:hover {
+  transform: translateY(-2px);
+}
+
+.tabs button.active {
+  background: #0984e3;
+  color: white;
+  border-color: #0984e3;
+}
+
+/* Stats Cards */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+  transition: 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-card h3 {
+  margin: 0;
+  font-size: 2rem;
+  color: #0984e3;
+}
+
+.stat-card p {
+  margin-top: 10px;
+  color: #636e72;
+  font-weight: 500;
+}
+
+/* Table Card */
+
+.table-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+}
+
+/* Table */
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  background: #f8f9fa;
+  padding: 16px;
+  text-align: left;
+  color: #2d3436;
+}
+
+.admin-table td {
+  padding: 16px;
+  border-top: 1px solid #eeeeee;
+}
+
+.admin-table tr:hover {
+  background: #fafafa;
+}
+
+/* Badges */
+
+.role-badge,
+.status-badge {
+  background: #eaf4ff;
+  color: #0984e3;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Delete Button */
+
+.delete-btn {
+  border: none;
+  background: #ffeaea;
+  color: #e74c3c;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.delete-btn:hover {
+  background: #e74c3c;
+  color: white;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+  .header h2 {
+    font-size: 1.5rem;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tabs button {
+    width: 100%;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
+
+  .admin-table {
+    min-width: 700px;
+  }
+}

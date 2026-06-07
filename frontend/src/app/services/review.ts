@@ -8,15 +8,13 @@ export class ReviewService {
 
   constructor(private http: HttpClient) {}
 
-  private getHeaders() {
-    const token = localStorage.getItem('token');
-    return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
-  }
+  // private getHeaders() {
+  //   const token = localStorage.getItem('token');
+  //   return new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+  // }
 
   addReview(data: any) {
-    return this.http.post<any>(this.apiUrl, data, {
-      headers: this.getHeaders()
-    });
+    return this.http.post<any>(this.apiUrl, data);
   }
 
   getSellerReviews(sellerId: number) {

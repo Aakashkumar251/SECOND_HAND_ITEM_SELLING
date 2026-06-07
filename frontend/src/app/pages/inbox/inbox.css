@@ -1,0 +1,95 @@
+.inbox-container {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.inbox-header {
+  margin-bottom: 25px;
+}
+
+.inbox-header h2 {
+  margin: 0;
+  color: #2d3436;
+}
+
+.inbox-header p {
+  color: #636e72;
+  margin-top: 6px;
+}
+
+.info-message {
+  background: #eaf4ff;
+  color: #0984e3;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.empty-state {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.empty-state h3 {
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #636e72;
+}
+
+.message-card {
+  background: white;
+  border-radius: 15px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  transition: 0.3s;
+}
+
+.message-card:hover {
+  transform: translateY(-3px);
+}
+
+.message-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.product-tag {
+  display: inline-block;
+  background: #f1f3f5;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.message-content {
+  line-height: 1.6;
+  color: #2d3436;
+  margin-bottom: 12px;
+}
+
+.message-time {
+  color: #636e72;
+  font-size: 13px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .message-top {
+    flex-direction: column;
+  }
+
+  .inbox-container {
+    padding: 15px;
+  }
+}

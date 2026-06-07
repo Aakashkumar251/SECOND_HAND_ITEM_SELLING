@@ -1,38 +1,57 @@
-<div style="max-width: 500px; margin: 40px auto; padding: 20px;">
+<div class="post-container">
   <h2>📦 Post an Item for Sale</h2>
 
-  <input [(ngModel)]="product.title" placeholder="Title" /><br><br>
+  <input
+    [(ngModel)]="product.title"
+    placeholder="Title">
 
-  <textarea [(ngModel)]="product.description"
-            placeholder="Describe your item..."
-            rows="4">
-  </textarea><br><br>
+  <textarea
+    [(ngModel)]="product.description"
+    placeholder="Describe your item..."
+    rows="4">
+  </textarea>
 
-  <input [(ngModel)]="product.price" placeholder="Price (₹)" type="number" /><br><br>
+  <input
+    [(ngModel)]="product.price"
+    placeholder="Price (₹)"
+    type="number">
 
-  <input [(ngModel)]="product.location" placeholder="Location" /><br><br>
+  <input
+    [(ngModel)]="product.location"
+    placeholder="Location">
 
   <select [(ngModel)]="product.category">
     <option value="">-- Select Category --</option>
-    <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
-  </select><br><br>
+    <option *ngFor="let cat of categories" [value]="cat">
+      {{ cat }}
+    </option>
+  </select>
 
-  <!-- Real file upload -->
-  <label for="imageUpload">Upload Images:</label><br>
-  <input id="imageUpload" type="file" multiple accept="image/*" (change)="onFileSelected($event)" /><br><br>
+  <label for="imageUpload">Upload Images:</label>
 
-  <!-- Show uploaded image previews -->
-  <div style="display:flex; gap:10px; flex-wrap:wrap;">
-    <img *ngFor="let url of product.imageUrls"
-         [src]="url"
-         style="width:80px; height:80px; object-fit:cover; border-radius:4px;" />
-  </div><br>
+  <input
+    id="imageUpload"
+    type="file"
+    multiple
+    accept="image/*"
+    (change)="onFileSelected($event)">
 
-@if (uploading) {
-  <p>⏳ Uploading...</p>
-}
+  <div class="image-preview">
+    <img
+      *ngFor="let url of product.imageUrls"
+      [src]="url">
+  </div>
 
-  <button (click)="onSubmit()" [disabled]="uploading">🚀 Post Item</button>
+  @if (uploading) {
+    <p class="uploading">⏳ Uploading...</p>
+  }
 
-  <p>{{ message }}</p>
+  <button
+    class="post-btn"
+    (click)="onSubmit()"
+    [disabled]="uploading">
+    🚀 Post Item
+  </button>
+
+  <p class="message">{{ message }}</p>
 </div>

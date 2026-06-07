@@ -1,36 +1,55 @@
-<div style="max-width:800px; margin:40px auto; padding:20px;">
+<div class="wishlist-container">
+
   <h2>❤️ My Wishlist</h2>
 
   @if (message) {
-    <p>{{ message }}</p>
+    <p class="message">{{ message }}</p>
   }
 
   @if (items.length === 0) {
-    <p>Your wishlist is empty.</p>
+    <div class="empty-state">
+      <p>Your wishlist is empty.</p>
+    </div>
   }
 
   @for (item of items; track item.id) {
-    <div
-      style="border:1px solid #ccc; padding:15px; margin-bottom:15px;
-             border-radius:8px; display:flex; gap:15px;">
+
+    <div class="wishlist-card">
 
       @if (item.imageUrls?.length > 0) {
         <img
           [src]="item.imageUrls[0]"
-          style="width:100px; height:100px; object-fit:cover; border-radius:4px;" />
+          class="wishlist-image" />
       }
 
-      <div style="flex:1;">
+      <div class="wishlist-info">
+
         <h3>{{ item.title }}</h3>
-        <p>₹ {{ item.price }} | 📍 {{ item.location }}</p>
 
-        <a [routerLink]="['/product', item.id]">View Details</a>
-        &nbsp;
+        <p class="price-location">
+          ₹ {{ item.price }} | 📍 {{ item.location }}
+        </p>
 
-        <button (click)="remove(item.id)" style="color:red;">
-          🗑️ Remove
-        </button>
+        <div class="actions">
+
+          <a
+            class="view-btn"
+            [routerLink]="['/product', item.id]">
+            View Details
+          </a>
+
+          <button
+            class="remove-btn"
+            (click)="remove(item.id)">
+            🗑️ Remove
+          </button>
+
+        </div>
+
       </div>
+
     </div>
+
   }
+
 </div>

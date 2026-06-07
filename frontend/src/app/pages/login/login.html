@@ -1,12 +1,41 @@
-<div style="max-width: 400px; margin: 50px auto; padding: 20px;">
-  <h2>Login</h2>
+<div class="login-container">
 
-  <input [(ngModel)]="credentials.email" placeholder="Email" type="email" /><br><br>
-  <input [(ngModel)]="credentials.password" placeholder="Password" type="password" /><br><br>
+  <div class="login-card">
 
-  <button (click)="onlogin()">Login</button>
+    <h2>🔐 Welcome Back</h2>
+    <p class="subtitle">Login to your SecondDeal account</p>
 
-  <p>{{ msg }}</p>
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        [(ngModel)]="credentials.email"
+        type="email"
+        placeholder="Enter your email">
+    </div>
 
-  <p>No account? <a routerLink="/register">Register</a></p>
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        [(ngModel)]="credentials.password"
+        type="password"
+        placeholder="Enter your password">
+    </div>
+
+    <button
+      class="login-btn"
+      (click)="onlogin()">
+      Login
+    </button>
+
+    @if(msg){
+      <p class="message">{{ msg }}</p>
+    }
+
+    <p class="register-link">
+      Don't have an account?
+      <a routerLink="/register">Register</a>
+    </p>
+
+  </div>
+
 </div>

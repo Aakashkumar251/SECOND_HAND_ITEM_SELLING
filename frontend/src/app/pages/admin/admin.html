@@ -1,38 +1,52 @@
-<div style="max-width:900px; margin:40px auto; padding:20px;">
-  <h2>🛠️ Admin Dashboard</h2>
+<div class="admin-container">
 
-  <!-- Tabs -->
-  <div style="display:flex; gap:10px; margin-bottom:20px;">
-    <button (click)="switchTab('stats')">📊 Stats</button>
-    <button (click)="switchTab('users')">👥 Users</button>
-    <button (click)="switchTab('products')">📦 Products</button>
+  <div class="header">
+    <h2>🛠️ Admin Dashboard</h2>
+    <p>Manage users, products and platform statistics</p>
   </div>
 
-  <!-- Stats Tab -->
+  <!-- Tabs -->
+  <div class="tabs">
+    <button
+      [class.active]="activeTab === 'stats'"
+      (click)="switchTab('stats')">
+      📊 Statistics
+    </button>
+
+    <button
+      [class.active]="activeTab === 'users'"
+      (click)="switchTab('users')">
+      👥 Users
+    </button>
+
+    <button
+      [class.active]="activeTab === 'products'"
+      (click)="switchTab('products')">
+      📦 Products
+    </button>
+  </div>
+
+  <!-- Stats -->
   @if (activeTab === 'stats') {
 
-    <div style="display:flex; gap:20px; flex-wrap:wrap;">
+    <div class="stats-grid">
 
-      <div style="border:1px solid #ccc; padding:20px;
-                  border-radius:8px; min-width:150px; text-align:center;">
+      <div class="stat-card">
         <h3>{{ stats.totalUsers }}</h3>
         <p>Total Users</p>
       </div>
 
-      <div style="border:1px solid #ccc; padding:20px;
-                  border-radius:8px; min-width:150px; text-align:center;">
+      <div class="stat-card">
         <h3>{{ stats.totalProducts }}</h3>
         <p>Total Products</p>
       </div>
 
-      <div style="border:1px solid #ccc; padding:20px;
-                  border-radius:8px; min-width:150px; text-align:center;">
+      <div class="stat-card">
         <h3>{{ stats.activeProducts }}</h3>
         <p>Active Listings</p>
       </div>
 
-      <div style="border:1px solid #ccc; padding:20px;
-                  border-radius:8px; min-width:150px; text-align:center;">
+      <div class="stat-card">
         <h3>{{ stats.soldProducts }}</h3>
         <p>Sold Items</p>
       </div>
@@ -40,66 +54,90 @@
     </div>
   }
 
-  <!-- Users Tab -->
+  <!-- Users -->
   @if (activeTab === 'users') {
 
-    <table style="width:100%; border-collapse:collapse;">
+    <div class="table-card">
 
-      <tr style="background:#f0f0f0;">
-        <th style="padding:10px; text-align:left;">ID</th>
-        <th style="padding:10px; text-align:left;">Name</th>
-        <th style="padding:10px; text-align:left;">Email</th>
-        <th style="padding:10px; text-align:left;">Role</th>
-        <th style="padding:10px; text-align:left;">Action</th>
-      </tr>
+      <table class="admin-table">
 
-      @for (user of users; track user.id) {
-        <tr style="border-bottom:1px solid #eee;">
-          <td style="padding:10px;">{{ user.id }}</td>
-          <td style="padding:10px;">{{ user.name }}</td>
-          <td style="padding:10px;">{{ user.email }}</td>
-          <td style="padding:10px;">{{ user.role }}</td>
-          <td style="padding:10px;">
-            <button
-              (click)="deleteUser(user.id)"
-              style="color:red;">
-              Delete
-            </button>
-          </td>
-        </tr>
-      }
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
 
-    </table>
+        <tbody>
+          @for (user of users; track user.id) {
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <span class="role-badge">
+                  {{ user.role }}
+                </span>
+              </td>
+              <td>
+                <button
+                  class="delete-btn"
+                  (click)="deleteUser(user.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+
+      </table>
+
+    </div>
   }
 
-  <!-- Products Tab -->
+  <!-- Products -->
   @if (activeTab === 'products') {
 
-    <table style="width:100%; border-collapse:collapse;">
+    <div class="table-card">
 
-      <tr style="background:#f0f0f0;">
-        <th style="padding:10px; text-align:left;">Title</th>
-        <th style="padding:10px; text-align:left;">Price</th>
-        <th style="padding:10px; text-align:left;">Status</th>
-        <th style="padding:10px; text-align:left;">Action</th>
-      </tr>
+      <table class="admin-table">
 
-      @for (product of products; track product.id) {
-        <tr style="border-bottom:1px solid #eee;">
-          <td style="padding:10px;">{{ product.title }}</td>
-          <td style="padding:10px;">₹ {{ product.price }}</td>
-          <td style="padding:10px;">{{ product.status }}</td>
-          <td style="padding:10px;">
-            <button
-              (click)="deleteProduct(product.id)"
-              style="color:red;">
-              Delete
-            </button>
-          </td>
-        </tr>
-      }
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
 
-    </table>
+        <tbody>
+          @for (product of products; track product.id) {
+            <tr>
+              <td>{{ product.title }}</td>
+              <td>₹ {{ product.price }}</td>
+              <td>
+                <span class="status-badge">
+                  {{ product.status }}
+                </span>
+              </td>
+              <td>
+                <button
+                  class="delete-btn"
+                  (click)="deleteProduct(product.id)">
+                  Delete
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+
+      </table>
+
+    </div>
   }
 
 </div>

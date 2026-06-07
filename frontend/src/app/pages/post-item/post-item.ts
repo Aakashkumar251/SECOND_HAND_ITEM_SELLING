@@ -9,7 +9,8 @@ import { ImageService } from '../../services/image';
   selector: 'app-post-item',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './post-item.html'
+  templateUrl: './post-item.html',
+  styleUrl: './post-item.css'
 })
 export class PostItemComponent {
 

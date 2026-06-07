@@ -9,7 +9,8 @@ import { ProductService } from '../../services/product';
   selector: 'app-seller-profile',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './seller-profile.html'
+  templateUrl: './seller-profile.html' ,
+  styleUrl: './seller-profile.css'
 })
 export class SellerProfileComponent implements OnInit {
 

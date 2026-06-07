@@ -7,7 +7,8 @@ import { ChatService } from '../../services/chat';
   selector: 'app-inbox',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './inbox.html'
+  templateUrl: './inbox.html',
+  styleUrl: './inbox.css'
 })
 export class InboxComponent implements OnInit {
 

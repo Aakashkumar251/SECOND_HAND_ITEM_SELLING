@@ -10,12 +10,12 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}            // is used to send HTTP requests.
 
-  private getHeaders() {
-    const token = localStorage.getItem('token');                                                                                                     
-    return new HttpHeaders({                                                  
-      'Authorization': `Bearer ${token}`                                                  
-    });                                                  
-  }          
+  // private getHeaders() {
+  //   const token = localStorage.getItem('token');                                                                                                     
+  //   return new HttpHeaders({                                                  
+  //     'Authorization': `Bearer ${token}`                                                  
+  //   });                                                  
+  // }          
                                     // so bar bar ye  na likhna paray ke har request me token bhejna hai, h 
                                     // um ek method bana lete hain getHeaders, jo ke token ko localStorage se uthata 
                                     // hai aur usko HTTP headers me set karta hai.
@@ -54,27 +54,20 @@ export class ProductService {
   }
 
   createProduct(data: any) {       //The method returns an Observable.
-    return this.http.post<any>(`${this.apiUrl}/create`, data, {   //The request is sent when you subscribe: it will send by the post-item componenet
-      headers: this.getHeaders()
-    });
+    return this.http.post<any>(`${this.apiUrl}/create`, data  //The request is sent when you subscribe: it will send by the post-item componenet
+      );
   }
 
   getMyListings() {
-    return this.http.get<any[]>(`${this.apiUrl}/my-listings`, {
-      headers: this.getHeaders()
-    });
+    return this.http.get<any[]>(`${this.apiUrl}/my-listings`);
   }
 
   markAsSold(id: number) {
-    return this.http.put<any>(`${this.apiUrl}/${id}/sold`, {}, {
-      headers: this.getHeaders()
-    });
+    return this.http.put<any>(`${this.apiUrl}/${id}/sold`, {});
   }
 
   deleteProduct(id: number) {
-    return this.http.delete(`${this.apiUrl}/${id}`, {
-      headers: this.getHeaders()
-    });
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
   filterProducts(category: string, minPrice: number,
                maxPrice: number, location: string) {

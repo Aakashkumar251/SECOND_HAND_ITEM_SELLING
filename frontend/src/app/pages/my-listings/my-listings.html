@@ -1,48 +1,81 @@
-<div style="max-width: 800px; margin: 40px auto; padding: 20px;">
-  <h2>📋 My Listings</h2>
-@if (message) {                       
-  <p>{{ message }}</p>
-}
-<!-- // The above code is an Angular template syntax that checks if the variable 'message' has a truthy value.
- If it does, it renders a paragraph element that displays the value of 'message'. 
- This is commonly used to show success or error messages to the user after performing an action, 
- such as marking an item as sold or deleting a listing. -->
+<div class="listings-container">
 
-@if (listings.length === 0) {
-  <p>You have no listings yet.</p>
-}
+  <div class="page-header">
+    <h2>📋 My Listings</h2>
+    <p>Manage your products and track their status</p>
+  </div>
 
-@for (item of listings; track item.id) {
-  <div style="border:1px solid #ccc; padding:15px; margin-bottom:15px; border-radius:8px; display:flex; gap:15px;">
+  @if (message) {
+    <div class="message-box">
+      {{ message }}
+    </div>
+  }
 
-    @if (item.imageUrls?.length > 0) {
-      <img
-        [src]="item.imageUrls[0]"
-        style="width:100px; height:100px; object-fit:cover; border-radius:4px;" />
-    }
+  @if (listings.length === 0) {
+    <div class="empty-state">
+      <h3>No Listings Yet</h3>
+      <p>Start selling by posting your first item.</p>
+    </div>
+  }
 
-    <div style="flex:1;">
-      <h3>{{ item.title }}</h3>
-      <p>₹ {{ item.price }} | 📍 {{ item.location }}</p>
+  @for (item of listings; track item.id) {
 
-      <span [style.color]="item.status === 'ACTIVE' ? 'green' : 'red'">
-        ● {{ item.status }}
-      </span>
+    <div class="listing-card">
 
-      <br><br>
-
-      <a [routerLink]="['/product', item.id]">View</a>
-
-      @if (item.status === 'ACTIVE') {
-        <button (click)="markSold(item.id)">
-          Mark as Sold
-        </button>
+      @if (item.imageUrls?.length > 0) {
+        <img
+          [src]="item.imageUrls[0]"
+          class="listing-image"
+          alt="Product">
       }
 
-      <button (click)="deleteItem(item.id)" style="color:red;">
-        🗑️ Delete
-      </button>
+      <div class="listing-info">
+
+        <h3>{{ item.title }}</h3>
+
+        <p class="price-location">
+          ₹ {{ item.price }}
+          <span>•</span>
+          📍 {{ item.location }}
+        </p>
+
+        <span
+          class="status-badge"
+          [class.active]="item.status === 'ACTIVE'"
+          [class.sold]="item.status !== 'ACTIVE'">
+
+          ● {{ item.status }}
+
+        </span>
+
+        <div class="actions">
+
+          <a
+            class="view-btn"
+            [routerLink]="['/product', item.id]">
+            View
+          </a>
+
+          @if (item.status === 'ACTIVE') {
+            <button
+              class="sold-btn"
+              (click)="markSold(item.id)">
+              Mark Sold
+            </button>
+          }
+
+          <button
+            class="delete-btn"
+            (click)="deleteItem(item.id)">
+            Delete
+          </button>
+
+        </div>
+
+      </div>
+
     </div>
 
-  </div>
-}
+  }
+
+</div>

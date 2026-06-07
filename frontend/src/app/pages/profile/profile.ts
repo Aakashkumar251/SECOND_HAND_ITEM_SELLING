@@ -8,7 +8,8 @@ import { ImageService } from '../../services/image';
   selector: 'app-profile',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './profile.html'
+  templateUrl: './profile.html',
+  styleUrl: './profile.css'
 })
 export class ProfileComponent implements OnInit {
 

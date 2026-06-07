@@ -7,7 +7,8 @@ import { WishlistService } from '../../services/wishlist';
   selector: 'app-wishlist',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './wishlist.html'
+  templateUrl: './wishlist.html',
+  styleUrl: './wishlist.css'
 })
 export class WishlistComponent implements OnInit {
 
