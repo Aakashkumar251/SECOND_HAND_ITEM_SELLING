@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductRepository extends JpaRepository<Product,Long> {
     // Get all products by a seller
     List<Product> findBySellerId(Long sellerId);
-
+        Optional< Product> findById(Long id);
     // Get all active products
     List<Product> findByStatus(String status);
 
@@ -21,7 +22,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     // Filter by category
     List<Product> findByCategoryAndStatus(Category category, String status);
     // Filter by category and price range
-    @Query("SELECT p FROM Product p WHERE " +
+    @Query("SELECT p FROM Product p WHERE " +                            // JPQL Java doesn't allow multi-line strings like SQL.
             "(:category IS NULL OR p.category = :category) AND " +
             "(:minPrice IS NULL OR p.price >= :minPrice) AND " +
             "(:maxPrice IS NULL OR p.price <= :maxPrice) AND " +

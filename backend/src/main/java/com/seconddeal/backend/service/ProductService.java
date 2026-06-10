@@ -53,7 +53,7 @@ public class ProductService {
         product.setImageUrls(request.getImageUrls());
         product.setSeller(seller);
 
-        return toResponse(productRepository.save(product));
+        return toResponse(productRepository.save(product));  // <S extends T> S save(S entity);
     }
 
     // Get all active products
@@ -87,6 +87,13 @@ public class ProductService {
                 .map(this::toResponse)
                 .collect(Collectors.toList());
     }
+
+     public List<ProductResponse> findbyCategoryandStatus(Category category, String status) {
+            return productRepository.findByCategoryAndStatus(category,status)
+                    .stream()
+                    .map(this::toResponse)
+                    .collect(Collectors.toList());
+     }
 
     // Mark product as sold
     public ProductResponse markAsSold(Long id) {
