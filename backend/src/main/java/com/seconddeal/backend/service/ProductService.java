@@ -88,6 +88,44 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+
+
+    public ProductResponse updateStatus(Long productId,
+
+                                        String email) {
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        if (!product.getSeller().getEmail().equals(email)) {
+            throw new RuntimeException(
+                    "You are not allowed to modify this product");
+        }
+
+        product.setStatus("sold");
+
+        return toResponse(productRepository.save(product));
+    }
+
+    public ProductResponse updateStatusactive(Long productId,
+
+                                        String email) {
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        if (!product.getSeller().getEmail().equals(email)) {
+            throw new RuntimeException(
+                    "You are not allowed to modify this product");
+        }
+
+        product.setStatus("active");
+
+        return toResponse(productRepository.save(product));
+    }
+
+
+
      public List<ProductResponse> findbyCategoryandStatus(Category category, String status) {
             return productRepository.findByCategoryAndStatus(category,status)
                     .stream()

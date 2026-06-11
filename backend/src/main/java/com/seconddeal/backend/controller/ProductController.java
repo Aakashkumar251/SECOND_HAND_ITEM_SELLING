@@ -52,11 +52,39 @@ public class ProductController {
         return ResponseEntity.ok(productService.getMyProducts(authentication.getName()));
     }
 
-    // Mark as sold
-    @PutMapping("/{id}/sold")
-    public ResponseEntity<ProductResponse> markSold(@PathVariable Long id) {
-        return ResponseEntity.ok(productService.markAsSold(id));
+//    // Mark as sold
+//    @PutMapping("/{id}/sold")
+//    public ResponseEntity<ProductResponse> markSold(@PathVariable Long id) {
+//        return ResponseEntity.ok(productService.updateStatus(id));
+//    }
+@PutMapping("/{id}/sold")
+public ResponseEntity<ProductResponse> updateStatus(
+        @PathVariable Long id,
+
+        Authentication authentication) {
+
+    String email = authentication.getName();
+
+    return ResponseEntity.ok(
+            productService.updateStatus(id, email));
+}
+
+
+    @PutMapping("/{id}/active")
+    public ResponseEntity<ProductResponse> updateStatusactive(
+            @PathVariable Long id,
+
+            Authentication authentication) {
+
+        String email = authentication.getName();
+
+        return ResponseEntity.ok(
+                productService.updateStatusactive(id, email));
     }
+
+
+
+
 
     // Delete listing
     @DeleteMapping("/{id}")
